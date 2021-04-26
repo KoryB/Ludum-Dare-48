@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/SpaceGrotesk-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Misc/Circles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Misc/SceneTransition.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/Main.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+outline_size = 6
+outline_color = Color( 0.360784, 0.631373, 0.682353, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_size = 7
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="Node2D" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.113725, 0.188235, 0.478431, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Circles" parent="." instance=ExtResource( 3 )]
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.375
+anchor_top = 0.483
+anchor_right = 0.625
+anchor_bottom = 0.72
+margin_left = -3.05176e-05
+margin_top = 0.199982
+margin_bottom = -3.05176e-05
+custom_fonts/font = SubResource( 1 )
+text = "GO!!!!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.32
+margin_bottom = -1.52588e-05
+custom_fonts/font = SubResource( 2 )
+text = "Hope Springs Eternal"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneTransitionRect" parent="." instance=ExtResource( 4 )]
+next_scene_path = "res://Scenes/Levels/Level1.tscn"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

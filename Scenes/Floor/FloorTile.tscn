@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Floor/FloorEdge.tscn" type="PackedScene" id=1]
+
+[sub_resource type="PhysicsMaterial" id=1]
+bounce = 0.5
+
+[node name="FloorTile" type="Node2D"]
+rotation = 2.35619
+
+[node name="Tile" type="StaticBody2D" parent="." groups=[
+"Ground",
+]]
+visible = false
+physics_material_override = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Tile"]
+polygon = PoolVector2Array( 0, 0, 64, 0, 64, 32, 0, 32 )
+
+[node name="FloorEdge" parent="." instance=ExtResource( 1 )]

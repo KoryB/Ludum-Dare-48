@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/Sprites/Ski/Ski PC - FINAL.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sfx/land.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Sfx/jump.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Sfx/voom_down_sweep.wav" type="AudioStream" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
+absorbent = true
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.569536, 1 )
+colors = PoolColorArray( 0.756836, 0.700665, 0.700665, 1, 0.635294, 0.556863, 0.556863, 0, 0.576471, 0.556863, 0.556863, 0 )
+
+[sub_resource type="Curve" id=3]
+min_value = -1.0
+bake_resolution = 10
+_data = [ Vector2( 0, -1 ), 0.0, 0.0, 0, 0, Vector2( 0.775862, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CapsuleShape2D" id=4]
+
+[node name="Ski" type="RigidBody2D"]
+mode = 2
+physics_material_override = SubResource( 1 )
+gravity_scale = 2.5
+continuous_cd = 1
+can_sleep = false
+linear_damp = 3.0
+script = ExtResource( 3 )
+initial_move_impulse = 147
+move_force = 629
+jump_impulse = -700
+fall_scale = 3.503
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="CPUParticles2D" parent="Sprite"]
+show_behind_parent = true
+amount = 16
+lifetime = 0.5
+speed_scale = 0.5
+local_coords = false
+texture = ExtResource( 2 )
+flag_align_y = true
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, 0 )
+damping = 42.53
+color_ramp = SubResource( 2 )
+hue_variation_curve = SubResource( 3 )
+
+[node name="SFX" type="Node" parent="Sprite"]
+
+[node name="SfxJump" type="AudioStreamPlayer" parent="Sprite/SFX"]
+stream = ExtResource( 5 )
+
+[node name="SfxLand" type="AudioStreamPlayer" parent="Sprite/SFX"]
+stream = ExtResource( 4 )
+volume_db = 9.087
+
+[node name="SfxVoom" type="AudioStreamPlayer" parent="Sprite/SFX"]
+stream = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.222221, -20.4339 )
+shape = SubResource( 4 )

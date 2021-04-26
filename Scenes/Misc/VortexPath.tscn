@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Levels/VortexPath.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Misc/Vortex.tscn" type="PackedScene" id=4]
+
+[node name="VortexPath" type="PathFollow2D"]
+rotation = -2.56763
+script = ExtResource( 3 )
+completion_time = 4.301
+
+[node name="Vortex" parent="." instance=ExtResource( 4 )]
